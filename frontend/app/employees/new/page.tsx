@@ -5,6 +5,7 @@ import Select from 'react-select';
 import { api } from "@/utils/wretch";
 import toast from 'react-hot-toast';
 import { DepartmentResponse, Department } from "@/utils/response-types";
+import Link from "next/link";
 
 
 
@@ -36,6 +37,11 @@ export default function AddEmployeePage() {
             try {
                 const response: DepartmentResponse = await api.get("/departments/").json();
                 setDepartments(response.departments);
+                if (response.departments.length === 0 ){
+                    toast.error("Please create atleast one department in the system to create first employee", {
+                        duration:1000*10
+                    })
+                }
             } catch (error) {
                 toast.error(`Failed to fetch departments. Please try again later. ${error instanceof Error ? error.message : "Unknown error"}`);
             }
@@ -44,7 +50,14 @@ export default function AddEmployeePage() {
         fetchDepartments();
     }, []);
 
+    console.log(departments)
     return (
+        departments.length === 0 ? 
+        <div className="flex flex-col items-center justify-center font-bold h-full p-10">
+            There is no department Exist in the system <br/>
+            In order to create Employee you have to create atleast one Department
+            <Link href={"/departments/new"} className="text-blue-400 mt-10">Click to create your first Department</Link>
+        </div> :
         <div className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black">
             <main className="flex w-full flex-col py-8 px-16 bg-black">
                 <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
