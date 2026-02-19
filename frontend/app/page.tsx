@@ -91,7 +91,7 @@ export default function Home() {
               <p className="text-6xl font-bold">{statistics.totalAttendance}</p>
             </ChartCard>
             <ChartCard title="Average Attendance per Employee">
-              <p className="text-6xl font-bold">{(statistics.averageAttendancePerEmployee).toFixed(2)}</p>
+              <p className="text-6xl font-bold">{(statistics.averageAttendancePerEmployee)?.toFixed(2)}</p>
             </ChartCard>
             <ChartCard title="Total present vs absent">
               <Chart
@@ -101,7 +101,7 @@ export default function Home() {
                   options={{
                     title: "Present vs Absent",
                     pieHole: 0.4,
-                    colors: ["#F44336", "#4CAF50"],
+                    colors: ["#4CAF50", "#F44336"],
                     backgroundColor: "transparent",
                     textStyle: {color: "#333"},
                     legend: { position: "bottom", textStyle: { color: "#fff" } },
