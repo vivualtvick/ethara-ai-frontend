@@ -154,13 +154,13 @@ export default function EmployeePage() {
                     </div>   
                                   
                 </div>
-                <div className="mt-4 flex gap-4">
+                <div className="mt-4 flex gap-4 justify-between">
                     <div className="flex items-center">
                         <h5 className="mr-5 font-bold text-lg">Select Attendence</h5>
                         <input onChange={(e)=>setNewAttendanceDate({...newAttendanceDate, date:e.target.value})} type="date" className="px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                        <input onChange={(e)=>setNewAttendanceDate({...newAttendanceDate, status:true})} type="radio" id="present" name="attendance_status" value="true" className="ml-4" />
+                        <input onChange={(e)=>setNewAttendanceDate({...newAttendanceDate, status:true})} type="radio" id="present" name="attendance_status" value="true" checked={newAttendanceDate.status} className="ml-4" />
                         <label htmlFor="present" className="ml-1 text-gray-300">Present</label>
-                        <input onChange={(e)=>setNewAttendanceDate({...newAttendanceDate, status:false})} type="radio" id="absent" name="attendance_status" value="false" className="ml-4" />
+                        <input onChange={(e)=>setNewAttendanceDate({...newAttendanceDate, status:false})} type="radio" id="absent" name="attendance_status" value="false" checked={!newAttendanceDate.status} className="ml-4" />
                         <label htmlFor="absent" className="ml-1 text-gray-300">Absent</label>
                         <button onClick={handleNewAttendance} hidden={newAttendanceDate.date === "" || newAttendanceDate.status === undefined} className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors hover:cursor-pointer">Add Attendance</button>
                     </div> 
